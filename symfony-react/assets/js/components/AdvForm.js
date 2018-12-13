@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -8,6 +8,30 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import ButtonBase from '@material-ui/core/ButtonBase';
+
+const styles = {
+    mainGrid: {
+        border: '1px solid black',
+        marginBottom: '20px',
+        padding: '20px',
+    },
+    title: {
+        fontWeight: '600',
+    },
+    formControlLabel: {
+        marginLeft: 0,
+    },
+    label: {
+        fontSize: '18px',
+    },
+    buttonShow: {
+        border: '1px solid black',
+        width: '98%',
+        padding: '10px 0',
+        marginLeft: '3px',
+        marginTop: '8px',
+    },
+};
 
 class AdvForm extends React.Component {
     constructor(props) {
@@ -25,15 +49,16 @@ class AdvForm extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <Grid item style={{ border: '1px solid black', marginBottom: '20px', padding: '20px' }}>
-                <Typography variant="h5" gutterBottom style={{ fontWeight: '600' }}>
+            <Grid item className={classes.mainGrid}>
+                <Typography variant="h5" gutterBottom className={classes.title}>
                     ADV
                 </Typography>
                 <FormControl component="fieldset">
                     <FormGroup>
                         <FormControlLabel
-                            style={{ marginLeft: 0 }}
+                            className={classes.formControlLabel}
                             control={
                                 <Checkbox
                                     name="is_available"
@@ -43,14 +68,14 @@ class AdvForm extends React.Component {
                                 />
                             }
                             label={
-                                <div style={{ fontSize: '18px' }}>
+                                <div className={classes.label}>
                                     on/off
                                 </div>
                             }
                             labelPlacement="start"
                         />
                         <FormControlLabel
-                            style={{ marginLeft: 0 }}
+                            className={classes.formControlLabel}
                             control={
                                 <Checkbox
                                     name="is_lazy"
@@ -60,7 +85,7 @@ class AdvForm extends React.Component {
                                 />
                             }
                             label={
-                                <div style={{ fontSize: '18px' }}>
+                                <div className={classes.label}>
                                     lazy &nbsp; &nbsp;
                                 </div>
                             }
@@ -71,13 +96,7 @@ class AdvForm extends React.Component {
                 {this.props.is_lazy ? (
                     <div>
                         <ButtonBase
-                            style={{
-                                border: '1px solid black',
-                                width: '98%',
-                                padding: '10px 0',
-                                marginLeft: '3px',
-                                marginTop: '8px'
-                            }}
+                            className={classes.buttonShow}
                             children="Show ADV"
                             onClick={event => this.props.showBanner()}
                         />
@@ -89,4 +108,8 @@ class AdvForm extends React.Component {
     }
 }
 
-export default AdvForm;
+AdvForm.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(AdvForm);

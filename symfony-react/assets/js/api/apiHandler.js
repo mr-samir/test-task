@@ -1,5 +1,5 @@
-import {apiPrefix} from '../etc/config.json';
 import axios from 'axios';
+import {apiPrefix} from '../etc/config.json';
 
 export default {
     getSlot(slotElementId) {

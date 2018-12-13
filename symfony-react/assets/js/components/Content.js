@@ -1,6 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+
+const styles = {
+    content: {
+        width: 'calc(100% - 320px)',
+        border: '1px solid black',
+    },
+};
 
 class Content extends React.Component {
     constructor(props) {
@@ -8,9 +16,10 @@ class Content extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
             <Grid
-                style={{ width: 'calc(100% - 320px)', border: '1px solid black' }}
+                className={classes.content}
                 container
                 direction="column"
                 justify="center"
@@ -24,4 +33,8 @@ class Content extends React.Component {
     }
 }
 
-export default Content;
+Content.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Content);

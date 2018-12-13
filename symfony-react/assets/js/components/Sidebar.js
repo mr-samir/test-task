@@ -1,13 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-import Websocket from 'react-websocket';
-import {wsUrl, slotElementId} from '../etc/config.json';
-import api from '../api/apiHandler';
-
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AdvForm from './AdvForm';
 import AdvSlot from './AdvSlot';
+
+import Websocket from 'react-websocket';
+import {wsPrefix, slotElementId} from '../etc/config.json';
+import api from '../api/apiHandler';
+
+const styles = {
+    mainGrid: {
+        width: '300px',
+    },
+};
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -72,16 +79,17 @@ class Sidebar extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
             <Grid
-                style={{ width: '300px' }}
+                className={classes.mainGrid}
                 container
                 direction="column"
                 justify="space-between"
                 alignItems="stretch"
             >
                 <Websocket
-                    url={wsUrl + `/${slotElementId}`}
+                    url={`${wsPrefix}/${slotElementId}`}
                     onMessage={this.handleData.bind(this)}
                 />
                 <AdvForm
@@ -101,4 +109,8 @@ class Sidebar extends React.Component {
     }
 }
 
-export default Sidebar;
+Sidebar.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Sidebar);

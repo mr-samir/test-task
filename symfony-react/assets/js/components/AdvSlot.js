@@ -1,8 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AdvBanner from './AdvBanner';
+
+const styles = {
+    mainGrid: {
+        border: '1px solid black',
+        textAlign: 'center',
+        padding: '20px',
+    },
+};
 
 class AdvSlot extends React.Component {
     constructor(props) {
@@ -10,8 +18,9 @@ class AdvSlot extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <Grid item style={{ border: '1px solid black', textAlign: 'center', padding: '20px' }}>
+            <Grid item className={classes.mainGrid}>
                 {this.props.show_banner
                 && this.props.slot_name
                 && this.props.slot_sizes
@@ -29,4 +38,8 @@ class AdvSlot extends React.Component {
     }
 }
 
-export default AdvSlot;
+AdvSlot.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(AdvSlot);
