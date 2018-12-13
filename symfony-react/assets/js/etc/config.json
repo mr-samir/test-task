@@ -1,0 +1,5 @@
+{
+  "apiPrefix": "http://localhost:8000/api/slot",
+  "wsUrl": "ws://localhost:8080/slot",
+  "slotElementId": "banner1"
+}
