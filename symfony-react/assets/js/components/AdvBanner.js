@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import postscribe from 'postscribe';
 
 class AdvBanner extends Component {
@@ -50,5 +51,11 @@ class AdvBanner extends Component {
         return React.createElement('div', {id: this.props.slot_element_id});
     }
 }
+
+AdvBanner.propTypes = {
+    slot_name: PropTypes.string.isRequired,
+    slot_sizes: PropTypes.string.isRequired,
+    slot_element_id: PropTypes.string.isRequired,
+};
 
 export default AdvBanner;

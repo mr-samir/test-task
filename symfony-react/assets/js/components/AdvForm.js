@@ -109,6 +109,10 @@ class AdvForm extends React.Component {
 }
 
 AdvForm.propTypes = {
+    updateData: PropTypes.func.isRequired,
+    is_available: PropTypes.bool.isRequired,
+    is_lazy: PropTypes.bool.isRequired,
+    showBanner: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
 };
 

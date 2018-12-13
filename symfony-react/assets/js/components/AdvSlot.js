@@ -39,6 +39,10 @@ class AdvSlot extends React.Component {
 }
 
 AdvSlot.propTypes = {
+    show_banner: PropTypes.bool.isRequired,
+    slot_name: PropTypes.string.isRequired,
+    slot_sizes: PropTypes.string.isRequired,
+    slot_element_id: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
 };
 
